@@ -1,14 +1,30 @@
 import React, { Component, createContext } from 'react';
 import Spotify from 'spotify-web-api-js';
-const Context = createContext();
 
+const Context = createContext();
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'GET_TRACKS':
+      return {
+        ...state,
+        selectedGenres: action.payload,
+        heading: 'Search results'
+      };
+    default:
+      return state;
+  }
+};
 const spotifyWebApi = new Spotify();
 
 export class Provider extends Component {
   state = {
     track_list: [],
+    selectedGenres: [],
     heading: 'Choose Your Destiny',
-    loggedIn: false
+    loggedIn: false,
+    dispatch: action => {
+      this.setState(state => reducer(state, action));
+    }
   };
 
   componentDidMount() {

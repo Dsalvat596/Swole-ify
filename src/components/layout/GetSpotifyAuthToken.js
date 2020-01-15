@@ -5,7 +5,6 @@ function GetSpotifyAuthToken() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const redirectUri = 'http://localhost:3000';
   const scopes = 'playlist-modify-public';
-  console.log(process.env.REACT_APP_CLIENT_ID, '++++++');
 
   return (
     <div className='container'>

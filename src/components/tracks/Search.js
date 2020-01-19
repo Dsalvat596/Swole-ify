@@ -10,22 +10,32 @@ export class Search extends Component {
   animatedComponents = makeAnimated();
 
   state = {
-    allGenres: [],
-    genreSearch: '',
+    selectedGenres: [],
     bpmMin: '',
     bpmMax: '',
     genreOptions: []
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  getPlaylist = (dispatch, e) => {
+    e.preventDefault();
   };
+  // onChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
   formatGenreForSelect(data) {
     let options = [];
     data.map(x => options.push({ value: x, label: x }));
     return options;
   }
+
+  handleChange = genres => {
+    if (genres && genres.length > 0) {
+      this.setState({ selectedGenres: genres.map(genre => genre.value) });
+    } else {
+      this.setState({ selectedGenres: [] });
+    }
+  };
   componentDidMount() {
     spotify
       .getAvailableGenreSeeds()
@@ -33,14 +43,14 @@ export class Search extends Component {
         this.setState({ genreOptions: this.formatGenreForSelect(res.genres) });
       })
       .catch(err => {
-        console.error(err);
+        console.error('error:', err);
       });
   }
   render() {
     return (
       <Consumer>
         {value => {
-          const { heading } = value;
+          const { heading, dispatch } = value;
           return (
             <div className='card card-body mb-4 p-4 mx-5'>
               <h1 className='display-4 text-center'>
@@ -83,17 +93,26 @@ export class Search extends Component {
                 <p className='lead text-center mt-5'>
                   Select your genre of music
                 </p>
-                <form>
+                <form onSubmit={this.getPlaylist.bind(this, dispatch)}>
                   <Select
+                    className='mt-4 col-md-10 mx-auto'
                     options={this.state.genreOptions}
                     components={this.animatedComponents}
                     closeMenuOnSelect={false}
                     isMulti={true}
                     placeholder={'select genre(s)...'}
+                    onChange={this.handleChange}
                   />
-                  <button className='btn-dark btn-lg' type='submit'>
-                    Get Some Songs!
-                  </button>
+                  {this.state.selectedGenres.length > 0 &&
+                  this.state.selectedGenres.length <= 5 ? (
+                    <button className='btn-dark btn-lg' type='submit'>
+                      Get Some Songs!
+                    </button>
+                  ) : (
+                    <h6 className='text-muted pt-4'>
+                      Please select between 1 and 5 genres
+                    </h6>
+                  )}
                 </form>
               </h1>
             </div>

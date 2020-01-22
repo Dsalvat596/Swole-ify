@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case 'GET_TRACKS':
       return {
         ...state,
-        selectedGenres: action.payload,
+        track_list: action.payload,
         heading: 'Search results'
       };
     default:

@@ -1,6 +1,7 @@
 import React from 'react';
 import GetSpotifyAuthToken from './GetSpotifyAuthToken';
 import Search from '../tracks/Search';
+import Tracks from '../tracks/Tracks';
 import { Consumer } from '../../context';
 
 export class Index extends React.Component {
@@ -8,9 +9,14 @@ export class Index extends React.Component {
     return (
       <Consumer>
         {value => {
-          const { heading, loggedIn } = value;
+          const { heading, loggedIn, track_list } = value;
           if (loggedIn) {
-            return <Search heading={heading} />;
+            return (
+              <React.Fragment>
+                <Search />
+                <Tracks />
+              </React.Fragment>
+            );
           } else {
             return <GetSpotifyAuthToken />;
           }

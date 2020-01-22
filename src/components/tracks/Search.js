@@ -18,6 +18,22 @@ export class Search extends Component {
 
   getPlaylist = (dispatch, e) => {
     e.preventDefault();
+    let seeds = {
+      limit: 20,
+      seed_genres: this.state.selectedGenres,
+      min_tempo: this.state.bpmMin,
+      max_tempo: this.state.bpmMax
+    };
+
+    spotify
+      .getRecommendations(seeds)
+      .then(res => {
+        dispatch({
+          type: 'GET_TRACKS',
+          payload: res.tracks
+        });
+      })
+      .catch(err => console.error(err));
   };
   // onChange = e => {
   //   this.setState({ [e.target.name]: e.target.value });
@@ -54,7 +70,7 @@ export class Search extends Component {
           return (
             <div className='card card-body mb-4 p-4 mx-5'>
               <h1 className='display-4 text-center'>
-                <i className='fas fa-music'></i> {heading}
+                <i className='fas fa-music'></i> Choose Your Destiny
                 <p className='lead text-center'>Choose your workout type</p>
                 <div className='container'>
                   <div className='row'>
@@ -98,7 +114,7 @@ export class Search extends Component {
                     className='mt-4 col-md-10 mx-auto'
                     options={this.state.genreOptions}
                     components={this.animatedComponents}
-                    closeMenuOnSelect={false}
+                    closeMenuOnSelect={true}
                     isMulti={true}
                     placeholder={'select genre(s)...'}
                     onChange={this.handleChange}

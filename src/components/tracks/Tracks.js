@@ -21,6 +21,14 @@ export class Tracks extends Component {
                       return <Track key={item.id} track={item} />;
                     })}
                   </div>
+                  <h3 className='text-center mt-4'>
+                    <button
+                      className='btn btn-success'
+                      style={{ width: '40%', margin: '0 auto 0 auto' }}
+                    >
+                      <i className='far fa-save'></i> Save Playlist
+                    </button>
+                  </h3>
                 </div>
               </React.Fragment>
             );

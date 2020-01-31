@@ -21,7 +21,7 @@ export class Search extends Component {
   getPlaylist = (dispatch, e) => {
     e.preventDefault();
     let seeds = {
-      limit: 20,
+      limit: 24,
       seed_genres: this.state.selectedGenres,
       min_tempo: this.state.bpmMin,
       max_tempo: this.state.bpmMax
@@ -71,7 +71,7 @@ export class Search extends Component {
           const { heading, dispatch } = value;
           if (!this.state.tokenExpired) {
             return (
-              <div className='card card-body mb-4 p-4 mx-5'>
+              <div className='card bg-light card-body mb-4 p-4 mx-5'>
                 <h1 className='display-4 text-center'>
                   <i className='fas fa-music'></i> Choose Your Destiny
                   <p className='lead text-center'>
@@ -81,7 +81,7 @@ export class Search extends Component {
                     <div className='row'>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-info'
+                          className='btn btn-info btn-block'
                           onClick={() => {
                             this.setState({ bpmMin: 125, bpmMax: 140 });
                           }}
@@ -91,7 +91,7 @@ export class Search extends Component {
                       </div>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-secondary'
+                          className='btn btn-secondary btn-block'
                           onClick={() => {
                             this.setState({ bpmMin: 100, bpmMax: 120 });
                           }}
@@ -101,7 +101,7 @@ export class Search extends Component {
                       </div>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-primary'
+                          className='btn btn-primary btn-block'
                           onClick={() => {
                             this.setState({ bpmMin: 121, bpmMax: 145 });
                           }}

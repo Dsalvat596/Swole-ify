@@ -2,7 +2,7 @@ import React from 'react';
 
 const Track = props => {
   const { track } = props;
-  console.log(track);
+  // console.log(track);
   return (
     <div className='col-md-4'>
       <div

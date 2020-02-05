@@ -17,7 +17,7 @@ const Navbar = () => {
 };
 
 const navStyle = {
-  color: '#ffc61a',
+  color: '#FFC108',
   fontSize: '2.5rem',
   fontFamily: 'Righteous, cursive'
 };

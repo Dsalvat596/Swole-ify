@@ -15,7 +15,34 @@ export class Search extends Component {
     bpmMin: '',
     bpmMax: '',
     genreOptions: [],
-    tokenExpired: false
+    tokenExpired: false,
+    inactiveStyle: 'btn btn-secondary btn-block',
+    active: '',
+    activeStyle: 'btn btn-warning btn-block'
+  };
+
+  setWorkoutType = e => {
+    e.preventDefault();
+    console.log(e.target.value);
+    if (e.target.value === 'Intense Cardio') {
+      this.setState({
+        bpmMin: 121,
+        bpmMax: 145,
+        active: e.target.value
+      });
+    } else if (e.target.value === 'Light Cardio') {
+      this.setState({
+        bpmMin: 100,
+        bpmMax: 120,
+        active: e.target.value
+      });
+    } else if (e.target.value === 'Heavy Lifting') {
+      this.setState({
+        bpmMin: 125,
+        bpmMax: 140,
+        active: e.target.value
+      });
+    }
   };
 
   getPlaylist = (dispatch, e) => {
@@ -23,6 +50,7 @@ export class Search extends Component {
     let seeds = {
       limit: 24,
       seed_genres: this.state.selectedGenres,
+      target_danceability: 0.9,
       min_tempo: this.state.bpmMin,
       max_tempo: this.state.bpmMax
     };
@@ -81,30 +109,39 @@ export class Search extends Component {
                     <div className='row'>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-info btn-block'
-                          onClick={() => {
-                            this.setState({ bpmMin: 125, bpmMax: 140 });
-                          }}
+                          className={
+                            this.state.active === 'Heavy Lifting'
+                              ? this.state.activeStyle
+                              : this.state.inactiveStyle
+                          }
+                          value='Heavy Lifting'
+                          onClick={this.setWorkoutType}
                         >
                           Heavy Lifting
                         </button>
                       </div>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-secondary btn-block'
-                          onClick={() => {
-                            this.setState({ bpmMin: 100, bpmMax: 120 });
-                          }}
+                          className={
+                            this.state.active === 'Light Cardio'
+                              ? this.state.activeStyle
+                              : this.state.inactiveStyle
+                          }
+                          value='Light Cardio'
+                          onClick={this.setWorkoutType}
                         >
                           Light Cardio
                         </button>
                       </div>
                       <div className='col-sm'>
                         <button
-                          className='btn btn-primary btn-block'
-                          onClick={() => {
-                            this.setState({ bpmMin: 121, bpmMax: 145 });
-                          }}
+                          className={
+                            this.state.active === 'Intense Cardio'
+                              ? this.state.activeStyle
+                              : this.state.inactiveStyle
+                          }
+                          value='Intense Cardio'
+                          onClick={this.setWorkoutType}
                         >
                           Intense Cardio
                         </button>
@@ -145,7 +182,11 @@ export class Search extends Component {
               </div>
             );
           } else {
-            return <GetSpotifyAuthToken />;
+            return (
+              <GetSpotifyAuthToken
+                refresh={'Session expired, please log in to Spotify again'}
+              />
+            );
           }
         }}
       </Consumer>

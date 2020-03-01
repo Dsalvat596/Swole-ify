@@ -8,8 +8,8 @@ export class Tracks extends Component {
     return (
       <Consumer>
         {value => {
-          console.log(value);
-          const { heading, track_list } = value;
+          // console.log(value);
+          const { heading, track_list, user } = value;
           if (track_list === undefined || track_list.length === 0) {
             return <div></div>;
           } else {
@@ -22,7 +22,10 @@ export class Tracks extends Component {
                       return <Track key={item.id} track={item} />;
                     })}
                   </div>
-                  <SavePlaylist track_list={track_list}></SavePlaylist>
+                  <SavePlaylist
+                    track_list={track_list}
+                    user={user}
+                  ></SavePlaylist>
                 </div>
               </React.Fragment>
             );

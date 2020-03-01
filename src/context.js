@@ -24,6 +24,7 @@ const spotifyWebApi = new Spotify();
 export class Provider extends Component {
   state = {
     track_list: [],
+    user: null,
     selectedGenres: [],
     heading: 'Choose Your Destiny',
     loggedIn: false,
@@ -39,6 +40,10 @@ export class Provider extends Component {
 
     if (params.access_token) {
       spotifyWebApi.setAccessToken(params.access_token);
+      spotifyWebApi.getMe().then(res => {
+        this.setState({ user: res });
+        // console.log(this.state.user);
+      });
     }
   }
 

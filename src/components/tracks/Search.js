@@ -23,7 +23,7 @@ export class Search extends Component {
 
   setWorkoutType = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (e.target.value === 'Intense Cardio') {
       this.setState({
         bpmMin: 121,
@@ -63,7 +63,12 @@ export class Search extends Component {
           payload: res.tracks
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.log('error:', err);
+        if (err.status === 401) {
+          this.setState({ tokenExpired: true });
+        }
+      });
   };
 
   formatGenreForSelect(data) {

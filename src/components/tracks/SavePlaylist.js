@@ -38,11 +38,18 @@ export class SavePlaylist extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container save-div'>
         <h3 className='text-center mt-4'>
+          <input
+            type='text'
+            className='form-control'
+            placeholder='give your playlist a name'
+            aria-label='playlistTitle'
+            style={{ marginBottom: '5px' }}
+          />
           <button
-            className='btn btn-primary'
-            style={{ margin: '0 auto 0 auto' }}
+            className='btn btn-warning'
+            style={{ margin: '0 auto 0 auto', width: '100%' }}
             onClick={this.savePlaylist}
           >
             <i className='far fa-save'></i> Save Playlist

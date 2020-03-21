@@ -110,7 +110,7 @@ export class Search extends Component {
                   <p className='lead text-center'>
                     <strong>Step 1: </strong>Choose your workout type
                   </p>
-                  <div className='container'>
+                  <div className='container workout-select'>
                     <div className='row'>
                       <div className='col-sm'>
                         <button
@@ -161,18 +161,22 @@ export class Search extends Component {
                       </p>
                       <form onSubmit={this.getPlaylist.bind(this, dispatch)}>
                         <Select
-                          className='mt-4 col-md-10 mx-auto'
+                          className='mt-4 col-md-10 mx-auto selectDrop'
                           options={this.state.genreOptions}
                           components={this.animatedComponents}
                           closeMenuOnSelect={true}
                           isMulti={true}
                           placeholder={'select genre(s)...'}
                           onChange={this.handleChange}
+                          style={{ fontSize: '2rem' }}
                         />
                         {this.state.selectedGenres.length > 0 &&
                         this.state.selectedGenres.length <= 5 &&
                         this.state.bpmMax ? (
-                          <button className='btn-dark btn-lg' type='submit'>
+                          <button
+                            className='btn-dark btn-lg submit-btn'
+                            type='submit'
+                          >
                             Get Some Songs!
                           </button>
                         ) : (

@@ -9,6 +9,8 @@ export class SavePlaylist extends Component {
     user: this.props.user
   };
 
+  handleTitleInput = e => this.setState({ [e.target.name]: e.target.value });
+
   savePlaylist = () => {
     const uriArr = this.props.track_list.map(track => {
       return track.uri;
@@ -42,10 +44,12 @@ export class SavePlaylist extends Component {
         <h3 className='text-center mt-4'>
           <input
             type='text'
+            name='playlistTitle'
             className='form-control'
-            placeholder='give your playlist a name'
+            placeholder='please enter a name for your playlist'
             aria-label='playlistTitle'
             style={{ marginBottom: '5px' }}
+            onChange={this.handleTitleInput}
           />
           <button
             className='btn btn-warning'

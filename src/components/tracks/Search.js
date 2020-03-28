@@ -101,7 +101,7 @@ export class Search extends Component {
     return (
       <Consumer>
         {value => {
-          const { heading, dispatch } = value;
+          const { dispatch } = value;
           if (!this.state.tokenExpired) {
             return (
               <div className='card bg-light card-body mb-4 p-4 mx-5'>

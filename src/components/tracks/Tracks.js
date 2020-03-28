@@ -8,7 +8,6 @@ export class Tracks extends Component {
     return (
       <Consumer>
         {value => {
-          // console.log(value);
           const { heading, track_list, user } = value;
           if (track_list === undefined || track_list.length === 0) {
             return <div></div>;

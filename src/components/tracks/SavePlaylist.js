@@ -5,7 +5,7 @@ const spotifyWebApi = new Spotify();
 
 export class SavePlaylist extends Component {
   state = {
-    playlistTitle: 'New Swolify Playlist',
+    playlistTitle: '',
     user: this.props.user
   };
 
@@ -16,10 +16,15 @@ export class SavePlaylist extends Component {
       return track.uri;
     });
 
+    const that = this;
+
     spotifyWebApi.createPlaylist(
       this.state.user.id,
       {
-        name: this.state.playlistTitle,
+        name:
+          this.state.playlistTitle !== ''
+            ? this.state.playlistTitle
+            : 'New SWOLEIFY Playlist',
         description: 'Playlist created with SWOLEIFY'
       },
       function(err, res) {
@@ -31,6 +36,7 @@ export class SavePlaylist extends Component {
               console.error('Error: ', err);
             } else {
               console.log('Playlist Created!');
+              that.setState({ playlistTitle: '' });
             }
           });
         }
@@ -47,11 +53,13 @@ export class SavePlaylist extends Component {
             name='playlistTitle'
             className='form-control'
             placeholder='please enter a name for your playlist'
+            value={this.state.playlistTitle}
             aria-label='playlistTitle'
             style={{ marginBottom: '5px' }}
             onChange={this.handleTitleInput}
           />
           <button
+            type='submit'
             className='btn btn-warning'
             style={{ margin: '0 auto 0 auto', width: '100%' }}
             onClick={this.savePlaylist}

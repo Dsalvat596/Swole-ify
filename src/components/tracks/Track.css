@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.col-md-4 {
+  margin: 0;
+  padding: 0;
+}
+
+.track-card {
+  background-color: #f8f9fa;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: start;
+  align-content: space-between;
+  height: 100px;
+}
+
+.track-card-body {
+  overflow: hidden;
+}
+
+.card-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.album-art-avatar {
+  width: 70px;
+  border-radius: 50%;
+  max-height: 70px;
+}
+
+.track-card-body {
+  margin-left: 10px;
+}

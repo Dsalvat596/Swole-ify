@@ -7,7 +7,7 @@ const Tracks = props => {
   useEffect(() => {
     console.log(myRef);
     myRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  }, [props.track_list]);
 
   return (
     // <Consumer>

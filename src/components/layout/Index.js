@@ -9,12 +9,20 @@ export class Index extends React.Component {
     return (
       <Consumer>
         {value => {
-          const { loggedIn } = value;
+          const { loggedIn, track_list, heading, user } = value;
           if (loggedIn) {
             return (
               <React.Fragment>
                 <Search />
-                <Tracks />
+                {track_list.length ? (
+                  <Tracks
+                    track_list={track_list}
+                    heading={heading}
+                    user={user}
+                  />
+                ) : (
+                  <div></div>
+                )}
               </React.Fragment>
             );
           } else {

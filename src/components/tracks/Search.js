@@ -14,6 +14,7 @@ export class Search extends Component {
     selectedGenres: [],
     bpmMin: '',
     bpmMax: '',
+    energy: '',
     genreOptions: [],
     tokenExpired: false,
     inactiveStyle: 'btn btn-secondary btn-block',
@@ -23,23 +24,27 @@ export class Search extends Component {
 
   setWorkoutType = e => {
     e.preventDefault();
-    // console.log(e.target.value);
     if (e.target.value === 'Intense Cardio') {
       this.setState({
         bpmMin: 121,
         bpmMax: 145,
+        energy: 0.7,
+
         active: e.target.value
       });
     } else if (e.target.value === 'Light Cardio') {
       this.setState({
         bpmMin: 100,
         bpmMax: 120,
+        energy: 0.7,
+
         active: e.target.value
       });
     } else if (e.target.value === 'Heavy Lifting') {
       this.setState({
         bpmMin: 125,
         bpmMax: 140,
+        energy: 0.9,
         active: e.target.value
       });
     }
@@ -51,6 +56,7 @@ export class Search extends Component {
       limit: 24,
       seed_genres: this.state.selectedGenres,
       target_danceability: 0.9,
+      target_energy: this.state.energy,
       min_tempo: this.state.bpmMin,
       max_tempo: this.state.bpmMax
     };

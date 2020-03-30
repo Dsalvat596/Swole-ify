@@ -5,7 +5,6 @@ import SavePlaylist from './SavePlaylist';
 const Tracks = props => {
   const myRef = useRef();
   useEffect(() => {
-    console.log(myRef);
     myRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [props.track_list]);
 

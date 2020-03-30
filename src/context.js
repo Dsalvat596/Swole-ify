@@ -10,10 +10,15 @@ const reducer = (state, action) => {
         track_list: action.payload,
         heading: 'Search results'
       };
-    case 'TOKEN_EXPIRED':
+    // case 'TOKEN_EXPIRED':
+    //   return {
+    //     ...state,
+    //     loggedIn: false
+    //   };
+    case 'CLEAR_TRACKLIST':
       return {
         ...state,
-        loggedIn: false
+        track_list: []
       };
     default:
       return state;

@@ -18,7 +18,13 @@ const reducer = (state, action) => {
     case 'CLEAR_TRACKLIST':
       return {
         ...state,
-        track_list: []
+        track_list: [],
+        showStepTwo: false
+      };
+    case 'SET_WORKOUT':
+      return {
+        ...state,
+        showStepTwo: true
       };
     default:
       return state;
@@ -31,6 +37,7 @@ export class Provider extends Component {
     track_list: [],
     user: null,
     selectedGenres: [],
+    showStepTwo: false,
     heading: 'Choose Your Destiny',
     loggedIn: false,
     dispatch: action => {

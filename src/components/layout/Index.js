@@ -9,7 +9,7 @@ export class Index extends React.Component {
     return (
       <Consumer>
         {value => {
-          const { loggedIn, track_list, heading, user } = value;
+          const { loggedIn, track_list, heading, user, showStepTwo } = value;
           if (loggedIn) {
             return (
               <React.Fragment>
@@ -19,6 +19,7 @@ export class Index extends React.Component {
                     track_list={track_list}
                     heading={heading}
                     user={user}
+                    showStepTwo={showStepTwo}
                   />
                 ) : (
                   <div></div>

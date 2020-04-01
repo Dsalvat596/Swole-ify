@@ -22,7 +22,7 @@ export class Search extends Component {
     activeStyle: 'btn btn-warning btn-block'
   };
 
-  setWorkoutType = e => {
+  setWorkoutType = (dispatch, e) => {
     e.preventDefault();
     if (e.target.value === 'Intense Cardio') {
       this.setState({
@@ -48,6 +48,9 @@ export class Search extends Component {
         active: e.target.value
       });
     }
+    dispatch({
+      type: 'SET_WORKOUT'
+    });
   };
 
   getPlaylist = (dispatch, e) => {
@@ -107,7 +110,7 @@ export class Search extends Component {
     return (
       <Consumer>
         {value => {
-          const { dispatch } = value;
+          const { dispatch, showStepTwo } = value;
           if (!this.state.tokenExpired) {
             return (
               <div className='card bg-light card-body mb-4 p-4 mx-5'>
@@ -126,7 +129,7 @@ export class Search extends Component {
                               : this.state.inactiveStyle
                           }
                           value='Heavy Lifting'
-                          onClick={this.setWorkoutType}
+                          onClick={this.setWorkoutType.bind(this, dispatch)}
                         >
                           Heavy Lifting
                         </button>
@@ -139,7 +142,7 @@ export class Search extends Component {
                               : this.state.inactiveStyle
                           }
                           value='Light Cardio'
-                          onClick={this.setWorkoutType}
+                          onClick={this.setWorkoutType.bind(this, dispatch)}
                         >
                           Light Cardio
                         </button>
@@ -152,14 +155,14 @@ export class Search extends Component {
                               : this.state.inactiveStyle
                           }
                           value='Intense Cardio'
-                          onClick={this.setWorkoutType}
+                          onClick={this.setWorkoutType.bind(this, dispatch)}
                         >
                           Intense Cardio
                         </button>
                       </div>
                     </div>
                   </div>
-                  {this.state.bpmMax && (
+                  {showStepTwo && (
                     <div className='selectArea'>
                       <p className='lead text-center mt-5'>
                         <strong>Step 2: </strong>

@@ -42,7 +42,6 @@ export class SavePlaylist extends Component {
         description: 'Playlist created with SWOLEIFY'
       },
       function(err, res) {
-        console.log(res);
         if (err) {
           console.error('Error: ', err);
         } else {

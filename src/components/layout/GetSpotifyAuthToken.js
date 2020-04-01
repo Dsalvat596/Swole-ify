@@ -3,7 +3,7 @@ import React from 'react';
 function GetSpotifyAuthToken(props) {
   let clientId;
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV === 'development') {
     clientId = process.env.REACT_APP_CLIENT_ID;
   } else {
     clientId = process.env.CLIENT_ID;

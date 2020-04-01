@@ -8,6 +8,9 @@ function GetSpotifyAuthToken(props) {
   } else {
     clientId = process.env.CLIENT_ID;
   }
+
+  console.log(process.env);
+  console.log(clientId);
   const authEndpoint = 'https://accounts.spotify.com/authorize';
   const redirectUri = 'http://localhost:3000';
   const scopes = 'playlist-modify-public';

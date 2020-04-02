@@ -1,20 +1,18 @@
 import React from 'react';
 
 function GetSpotifyAuthToken(props) {
-  let clientId = process.env.REACT_APP_CLIENT_ID;
+  let redirectUri;
+  if (process.env.NODE_ENV !== 'production') {
+    redirectUri = 'http://localhost:3000';
+  } else {
+    redirectUri = 'https://swolify.herokuapp.com/';
+  }
 
-  // if (process.env.NODE_ENV === 'development') {
-  //   clientId = process.env.REACT_APP_CLIENT_ID;
-  // } else {
-  //   clientId = process.env.CLIENT_ID;
-  // }
-
-  console.log(process.env);
-  console.log(clientId);
+  console.log(redirectUri);
+  const clientId = process.env.REACT_APP_CLIENT_ID;
   const authEndpoint = 'https://accounts.spotify.com/authorize';
-  const redirectUri = 'http://localhost:3000';
-  const scopes = 'playlist-modify-public';
 
+  const scopes = 'playlist-modify-public';
   const buttonText = !props.refresh ? 'Log in with Spotify' : props.refresh;
 
   return (

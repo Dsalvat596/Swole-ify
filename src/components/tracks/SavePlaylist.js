@@ -78,7 +78,7 @@ export class SavePlaylist extends Component {
                 />
                 <button
                   type='submit'
-                  className='btn btn-warning'
+                  className='btn btn-success'
                   style={{ margin: '0 auto 0 auto', width: '100%' }}
                   onClick={this.savePlaylist}
                 >
@@ -91,22 +91,22 @@ export class SavePlaylist extends Component {
                   centered
                 >
                   <Modal.Body>
-                    <h4>Conglaturation!</h4>
+                    <h4>Congratulations!</h4>
                     <p>
                       Your playlist: <strong>{this.state.playlistTitle}</strong>{' '}
-                      has been created, check your Spotify Playlists! Click OKAY
-                      to start over and make another playlist!
+                      has been created! Click OKAY to start over and make
+                      another playlist!
                     </p>
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
-                      variant='outline-success'
+                      variant='success'
                       onClick={this.handleClose.bind(this, dispatch)}
                     >
                       OKAY
                     </Button>
                     <Button
-                      variant='outline-warning'
+                      variant='outline-success'
                       href={this.state.playlistUrl}
                       target='_blank'
                     >

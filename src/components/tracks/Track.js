@@ -3,7 +3,6 @@ import './Track.css';
 
 const Track = props => {
   const { track } = props;
-  // console.log(track);
   return (
     <div className='col-md-4'>
       <div className='track-card'>

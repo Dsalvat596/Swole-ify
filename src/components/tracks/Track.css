@@ -12,12 +12,13 @@ body {
 }
 
 .track-card {
-  background-color: #f8f9fa;
+  background-color: #272727;
+  color: #fff;
   border-radius: 3px;
   margin: 5px;
   padding: 10px 5px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-content: space-between;
   height: 100px;
 }

@@ -47,14 +47,12 @@ export class Provider extends Component {
 
   componentDidMount() {
     const params = this.getHashParams();
-    console.log(params);
     this.setState({ loggedIn: params.access_token ? true : false });
 
     if (params.access_token) {
       spotifyWebApi.setAccessToken(params.access_token);
       spotifyWebApi.getMe().then(res => {
         this.setState({ user: res });
-        // console.log(this.state.user);
       });
     }
   }

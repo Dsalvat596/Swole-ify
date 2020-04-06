@@ -8,6 +8,11 @@ import GetSpotifyAuthToken from '../layout/GetSpotifyAuthToken';
 const spotify = new Spotify();
 
 export class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
   animatedComponents = makeAnimated();
 
   state = {
@@ -19,16 +24,24 @@ export class Search extends Component {
     tokenExpired: false,
     inactiveStyle: 'btn btn-secondary btn-block',
     active: '',
-    activeStyle: 'btn btn-warning btn-block'
+    activeStyle: 'btn btn-success btn-block'
   };
 
   setWorkoutType = (dispatch, e) => {
     e.preventDefault();
+
+    setTimeout(() => {
+      this.myRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end'
+      });
+    }, 500);
+
     if (e.target.value === 'Intense Cardio') {
       this.setState({
         bpmMin: 121,
         bpmMax: 145,
-        energy: 0.7,
+        // energy: 0.7,
 
         active: e.target.value
       });
@@ -36,7 +49,7 @@ export class Search extends Component {
       this.setState({
         bpmMin: 100,
         bpmMax: 120,
-        energy: 0.7,
+        // energy: 0.7,
 
         active: e.target.value
       });
@@ -58,8 +71,9 @@ export class Search extends Component {
     let seeds = {
       limit: 24,
       seed_genres: this.state.selectedGenres,
-      target_danceability: 0.9,
-      target_energy: this.state.energy,
+      // target_danceability: 0.9,
+      // target_energy: this.state.energy,
+      target_acousticness: 0.1,
       min_tempo: this.state.bpmMin,
       max_tempo: this.state.bpmMax
     };
@@ -106,6 +120,7 @@ export class Search extends Component {
         }
       });
   }
+
   render() {
     return (
       <Consumer>
@@ -113,9 +128,9 @@ export class Search extends Component {
           const { dispatch, showStepTwo } = value;
           if (!this.state.tokenExpired) {
             return (
-              <div className='card bg-light card-body mb-4 p-4 mx-5'>
-                <h1 className='display-4 text-center'>
-                  <i className='fas fa-music'></i> Choose Your Destiny
+              <div className='card card-body mb-4 p-4 mx-5' ref={this.myRef}>
+                <h2 className='display-4 text-center'>
+                  Choose Your Destiny
                   <p className='lead text-center'>
                     <strong>Step 1: </strong>Choose your workout type
                   </p>
@@ -196,7 +211,7 @@ export class Search extends Component {
                       </form>
                     </div>
                   )}
-                </h1>
+                </h2>
               </div>
             );
           } else {

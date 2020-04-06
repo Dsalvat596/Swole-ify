@@ -18,7 +18,9 @@ const Tracks = props => {
     // return (
     <React.Fragment>
       <div className='mb-4 p-4 mx-5' ref={myRef}>
-        <h3 className='text-center mb-4'>{props.heading}</h3>
+        <h3 className='text-center mb-4' style={{ color: '#fff' }}>
+          {props.heading}
+        </h3>
         <div className='row'>
           {props.track_list.map(item => {
             return <Track key={item.id} track={item} />;

@@ -8,7 +8,6 @@ function GetSpotifyAuthToken(props) {
     redirectUri = 'https://swolify.herokuapp.com/';
   }
 
-  console.log(redirectUri);
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const authEndpoint = 'https://accounts.spotify.com/authorize';
 
